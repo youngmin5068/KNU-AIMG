@@ -10,6 +10,7 @@ def partition_batch(ls, size):
     while i < len(ls):
         partitioned_lists.append(ls[i: i+size])
         i += size
+
     return partitioned_lists
 
 

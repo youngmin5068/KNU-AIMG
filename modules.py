@@ -71,6 +71,7 @@ class BasicBlockV1(nn.Module):
         return out
 
 class ResNetV2(nn.Module):
+    
     def __init__(self,
                  input_channels, num_filters,
                  first_layer_kernel_size, first_layer_conv_stride,

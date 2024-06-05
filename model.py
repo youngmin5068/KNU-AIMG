@@ -96,3 +96,23 @@ class GMIC(nn.Module):
         #self.y_fusion = (self.fusion_dnn(concat_vec))
 
         return self.y_global, self.y_local,  self.saliency_map, self.resized_map
+ 
+
+if __name__ == '__main__':
+
+    sample = torch.randn((1,1,2944,1920))
+
+    parameters = {
+    "device_type":'cpu',
+    "cam_size": (46, 30),
+    "K": 6,
+    "crop_shape": (256, 256),
+    "percent_t":0.02,
+    "post_processing_dim": 256,
+    "num_classes": 1
+    }
+
+    cc_model = GMIC(parameters=parameters)
+    cc_model.load_state_dict(torch.load("/data/code/KNU-AIMG/CC-AIMG_240524.pth", map_location=torch.device('cpu')))
+
+    predict_global, predict_local, saliency_map, resized_map = cc_model(sample)
